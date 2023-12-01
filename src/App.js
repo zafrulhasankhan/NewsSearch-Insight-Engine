@@ -44,8 +44,9 @@ const App = (props) => {
         },
       }
     ).then((res) => {
-    
+
       setNewsArticles(res.data.articles);
+      setLoading(true);
     }).finally(() => {
       setLoading(false);
     });
@@ -63,26 +64,36 @@ const App = (props) => {
 
     <>
       <Switch>
+        
         <Route
           exact
           path={'/'}
           component={() => <Home setSearch={setSearch} />}
         />
-
+  {/* {!NewsArticles ? <div className="search-page">
+              <HeaderSearchPage searchTerm={searchTerm} setSearch={setSearch} />
+              <h4 style={{ fontFamily: 'cursive', textAlign: 'center', position: 'relative', top: '70px' }}>
+                Loading....
+              </h4>
+            </div> : ""} */}
+          
         {searchTerm !== '' && !Loading ? (
-          <Route
-            exact
-            path={'/search'}
-            component={() => (
+          
+            <Route
+              exact
+              path={'/search'}
+              component={() => (
 
-              <NewsCards
-                articles={NewsArticles}
-                activeArticle={activeArticles}
-                searchTerm={searchTerm}
-                setSearch={setSearch}
-              />
-            )}
-          />
+                <NewsCards
+                  articles={NewsArticles}
+                  activeArticle={activeArticles}
+                  searchTerm={searchTerm}
+                  setSearch={setSearch}
+                  loading={Loading}
+                />
+              )}
+            />
+        
         ) :
           <div className="search-page">
             <HeaderSearchPage searchTerm={searchTerm} setSearch={setSearch} />

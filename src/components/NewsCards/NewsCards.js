@@ -15,15 +15,17 @@ const infoCards = [
 
 
 
-const NewsCards = ({ articles, activeArticle, searchTerm, setSearch }) => {
+const NewsCards = ({ articles, activeArticle, searchTerm, setSearch, loading }) => {
 
     const classes = useStyles();
 
-    return ( 
+    return (
         <div>
             {articles.length ? (
 
+
                 <div>
+                    
                     <HeaderSearchPage searchTerm={searchTerm} setSearch={setSearch} />
                     {/* {articles?.length ? ( */}
                     <Grow in>
@@ -53,7 +55,7 @@ const NewsCards = ({ articles, activeArticle, searchTerm, setSearch }) => {
                 </div>
 
 
-             ) : (
+            ) : (
 
                 <div className="search-page">
 
